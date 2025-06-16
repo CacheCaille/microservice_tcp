@@ -29,6 +29,32 @@ Il suffirait d’ajouter une nouvelle condition dans handle et de créer une mé
 Il faudrait remplacer StreamRequestHandler par un framework HTTP, et la logique de traitement métier et l’état partagé peuvent être conservés en grande partie.
 
 ## Dans une perspective micro-services, quels modules seraient candidats naturels pour devenir des services indépendants ?
+les modules d'authentification utilisateurs, de gestion de canaux, des logs et des alertes par exemple.
+
+## Est-il envisageable de découpler la gestion des utilisateurs de celle des canaux ? Comment ?
+
+## Le serveur sait-il détecter une déconnexion brutale d’un client ? Peut-il s’en remettre ?
+Oui, via la sortie du readline() (retourne une ligne vide).
+
+## Si un message ne peut pas être livré à un client (socket cassée), le système le détecte-t-il ?
+Les erreurs d’écriture sont silencieusement ignorées.
+
+## Peut-on garantir une livraison ou au moins une trace fiable de ce qui a été tenté/envoyé ?
+Il n'y a pas de garantie, il y a juste un log qui permet de garder une trace de ce qui a été tenté/envoyé.
+
+## Quelles sont les règles implicites du protocole que vous utilisez ? Une ligne = une commande, avec un préfixe (/msg, /join, etc.) et éventuellement des arguments : est-ce un protocole explicite, documenté, formalisé ?
+
+## Le protocole est-il robuste ? Que se passe-t-il si un utilisateur envoie /msg sans texte ? Ou un /join avec un nom de canal invalide ?
+la commande /msg sans texte renvoie un message vide.
+la commande /join accepte tout nom, même vide ou invalide.
+
+## Peut-on imaginer une spécification formelle de ce protocole ? Un mini-ABNF, une doc à destination des développeurs de client ?
+Oui on pourrait avoir une spécification pour ce protocole et réaliser une documentation serait utile.
+
+## Quelle serait la différence structurelle entre ce protocole et un protocole REST ou HTTP ?
+Le protocole actuel est a besoin d'une connexion persistante alors que HTTP est stateless, chaque requête est indépendante.
+
+
 
 
 
