@@ -18,3 +18,9 @@
   - L'erreur est détectée mais pas traitée proprement
 - Est-ce qu’un canal vide est supprimé ?
   - Non, les canaux vides restent dans etat_serveur["canaux"] avec une liste vide
+
+## Proposition d'évolution
+- Séparer les responsabilités au sein de la classe IRCHandler
+- Ne pas ignorer les erreurs
+- Voir si un canal peut exister alors qu'il est vide (canal public par ex.)
+- Validation des pseudos/canaux (taille, formattage,...)
